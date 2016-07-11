@@ -17,7 +17,7 @@ return array(
         'dsn'    => sprintf('sqlite:%s/data/zftutorial.db', realpath(getcwd())),
     ],
     
-    // 表示服务器管理器节点
+    // 服务器管理器
     'service_manager' => array(
         // 表示服务器管理器需要加载的工厂类
         'factories' => array(
@@ -25,7 +25,7 @@ return array(
             
             'Zend\Log\Logger' => function($sm){
                 $logger = new Zend\Log\Logger;
-                $writer = new Zend\Log\Writer\Stream('./data/logs/'.date('Y-m-d').'-error.log');
+                $writer = new Zend\Log\Writer\Stream('./data/logs/log_'.date('Y-m-d').'.log');
                  
                 $logger->addWriter($writer);  
                  

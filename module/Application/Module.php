@@ -35,12 +35,15 @@ class Module
         // 附加事件管理器
         $moduleRouteListener->attach($eventManager);
         
-        $sharedManager = $application->getEventManager()->getSharedManager();
-        $sharedManager->attach('Zend\Mvc\Application', 'dispatch.error', function($e) use ($sm) {
-            if ($e->getParam('exception')) {
-                $sm->get('Zend\Log\Logger')->crit($e->getParam('exception'));
-            }
-        });
+        // Log any Uncaught Errors
+//        $sharedManager = $application->getEventManager()->getSharedManager();
+//        $sharedManager->attach('Zend\Mvc\Application', 'dispatch.error', 
+//                function($e) use ($sm) {
+//                    if ($e->getParam('exception')) {
+//                        $sm->get('Zend\Log\Logger')->crit($e->getParam('exception'));
+//                    }
+//                }
+//        );
     }
 
     // 获取此模块中的配置信息，返回一个符合ZF2自动加载工厂规则的数组

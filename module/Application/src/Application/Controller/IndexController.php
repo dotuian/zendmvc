@@ -20,6 +20,10 @@ class IndexController extends AbstractActionController
     //控制器的一个响应动作，其中indexAction 这个名称为ZF默认动作
     public function indexAction()
     {
+        $this->getLogger()->debug('debug...');
+        $this->getLogger()->info('info...');
+        $this->getLogger()->warn('warn...');
+        
         return new ViewModel();
     }
 
@@ -27,4 +31,10 @@ class IndexController extends AbstractActionController
         echo date('Y-m-d');
         return new ViewModel();
     }
+    
+    // 获取服务器管理器中注册的Logger实例
+    protected function getLogger(){
+        return $this->getServiceLocator()->get('Zend\Log\Logger');
+    }
+    
 }
