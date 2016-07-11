@@ -1,0 +1,29 @@
+<table class="table table-hover table-bordered">
+
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Add news</a></th>
+    </tr>
+
+    <?php foreach ($paginator as $news) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($news->title); ?></td>
+            <td><?php echo $this->escapeHtml($news->content); ?></td>
+            <td>
+                <a href="<?php echo $this->url('news', array('action' => 'edit', 'id' => $news->id)); ?>"><?php echo $this->translate("Edit") ?></a>
+                <a href="<?php echo $this->url('news', array('action' => 'delete', 'id' => $news->id)); ?>"><?php echo $this->translate("Delete") ?></a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+        
+</table>
+
+<?php
+    echo $this->paginationControl($this->paginator, 
+            'sliding', 
+            array('application/partial/paginator.phtml', 'News'),
+            array('route' => 'news', 'action' => 'list')
+        );
+?>
+

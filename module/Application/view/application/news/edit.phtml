@@ -1,0 +1,16 @@
+<?php
+
+$form = $this->form;
+
+// 设置表单的action 属性
+$form->setAttribute('action', $this->url('news', array('action' => 'edit', 'id' => $this->id)));
+
+// 打开form 表单
+echo $this->form()->openTag($form);
+
+// 生成表单元素
+echo $this->formCollection($this->form);
+
+// 关闭表单
+echo $this->form()->closeTag();
+
