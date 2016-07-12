@@ -6,7 +6,9 @@ return array(
     'modules' => array(
         'Application',
         'Album',
-        'ZendDeveloperTools',
+//        'Auth',
+//        'ZendDeveloperTools',
+        'ZfcUser',
     ),
 
     // 设置模块的事件侦听

@@ -24,8 +24,7 @@ return array(
                     'route'    => '/',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
-                        #'controller' => IndexController::class,
-                        'action'     => 'test',
+                        'action'     => 'index',
                     ),
                 ),
             ),

@@ -27,6 +27,12 @@ class AlbumController extends AbstractActionController
         return $this->albumTable;
     }
     
+    public function listAction(){
+        $view = $this->indexAction();
+        $view->setTemplate('album/album/index');
+        return $view;
+    }
+    
     public function indexAction() {
         
         $paginator = $this->getAlbumTable()->fetchAll(true);

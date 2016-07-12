@@ -5,7 +5,7 @@ use Zend\Mvc\Application;
 /**
  * Display all errors when APPLICATION_ENV is development.
  */
-if ($_SERVER['APPLICATION_ENV'] === 'development') {
+if (!isset($_SERVER['APPLICATION_ENV']) || $_SERVER['APPLICATION_ENV'] === 'development') {
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
 }
@@ -28,7 +28,7 @@ if (php_sapi_name() === 'cli-server') {
 // Composer autoloading
 include __DIR__ . '/../vendor/autoload.php';
 
-if (! class_exists(Application::class)) {
+if (!class_exists(Application::class)) {
     throw new RuntimeException(
         "Unable to load application.\n"
         . "- Type `composer install` if you are developing locally.\n"

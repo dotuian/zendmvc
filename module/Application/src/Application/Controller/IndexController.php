@@ -22,7 +22,7 @@ class IndexController extends AbstractActionController
     {
         $this->getLogger()->debug('debug...');
         $this->getLogger()->info('info...');
-        $this->getLogger()->warn('warn...');
+        $this->getLogger()->warn($_GET);
         
         return new ViewModel();
     }
