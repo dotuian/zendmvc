@@ -52,6 +52,8 @@ return array(
                     ),
                 ),
                 
+                
+                // 'may_terminate' => false 时，只有 child_routes 可以被匹配，父路径不不可用
                 'may_terminate' => true,
                 
                 'child_routes' => array(
@@ -92,6 +94,24 @@ return array(
                 ),
             ),
 
+            'post' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/post[/:action][/:id][/page/:page]',
+                    'constraints'=>array(
+                        'action'=>'[a-zA-Z]*',
+                        // 路由中 id 的匹配规则，只匹配数字类型的id
+                        'id'=>'[0-9]+',
+                        // 路由中 page 的匹配规则
+                        'page'=>'[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller'    => 'Application\Controller\Post',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
+
 
 
         ),
@@ -112,6 +132,7 @@ return array(
             // 可以将多国语言国际功能删除。
             'translator' => 'MvcTranslator',
         ),
+        
     ),
     
     // translator 翻译器
@@ -144,7 +165,25 @@ return array(
             // 数组值则表示对应控制器所在的具体路径控制器的配置不局限于某一个控制器，可以把所有已经存在并且有效控制器加入到此区块来进行使用。
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\News'  => 'Application\Controller\NewsController',
+            'Application\Controller\Post'  => 'Application\Controller\PostController',
         ),
+        
+        'factories' => [
+//            'PostController' => function ($sm) {
+//                // We assume a Service key 'PostService' here that returns the PostService Class
+//                return new PostController(
+//                    $sm->getServiceLocator()->get('PostService')
+////                    $sm->get('ZfcRbac\Service\AuthorizationService')
+//                );
+//            },
+//            'PostService' => function($sm) {
+//                return new PostService(
+//                    $sm->get('doctrine.entitymanager.orm_default')
+//                );
+//            }
+        ],
+
+        
     ),
     
     // 视图管理器

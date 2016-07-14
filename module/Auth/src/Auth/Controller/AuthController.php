@@ -14,6 +14,8 @@ class AuthController extends AbstractActionController {
     protected $authservice;
 
     public function __construct() {
+        
+
     }
 
     public function getAuthService() {

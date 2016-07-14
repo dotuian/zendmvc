@@ -31,6 +31,12 @@ return array(
                  
                 return $logger;
             },
+            
+            //
+//            'Zend\Authentication\AuthenticationService' => function($sm) {
+//                // Create your authentication service!
+//            }
+
         ),
     ),
 

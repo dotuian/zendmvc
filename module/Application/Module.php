@@ -35,6 +35,12 @@ class Module
         // 附加事件管理器
         $moduleRouteListener->attach($eventManager);
         
+        
+//        $t = $e->getTarget();
+//        $t->getEventManager()->attach(
+//            $t->getServiceManager()->get('ZfcRbac\View\Strategy\RedirectStrategy')
+//        );
+        
         // Log any Uncaught Errors
 //        $sharedManager = $application->getEventManager()->getSharedManager();
 //        $sharedManager->attach('Zend\Mvc\Application', 'dispatch.error', 
