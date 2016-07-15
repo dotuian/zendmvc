@@ -33,6 +33,7 @@ class BlogController extends AbstractActionController {
         return $this->redirect()->toRoute('blog', array('action' => 'list'));
     }
 
+    
     public function listAction() {
 
         $data = $this->postService->findAllPosts();
@@ -64,7 +65,17 @@ class BlogController extends AbstractActionController {
         ));
     }
 
+
     public function editAction() {
+        
+        if (!$this->isGranted('edit')) {
+//            throw new \ZfcRbac\Exception\UnauthorizedException();
+//            var_dump($this);
+            
+            throw new \Exception("You are not authorized to access this resource");
+        }
+
+        
         $request = $this->getRequest();
         $post = $this->postService->findPost($this->params('id'));
 

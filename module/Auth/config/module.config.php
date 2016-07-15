@@ -29,32 +29,32 @@ return array(
             ],
 
             
-            'success' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/success',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Auth\Controller',
-                        'controller' => 'Success',
-                        'action' => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '/[:action]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z0-9]*',
-                                'action' => '[a-zA-Z0-9]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
+//            'success' => array(
+//                'type' => 'Literal',
+//                'options' => array(
+//                    'route' => '/success',
+//                    'defaults' => array(
+//                        '__NAMESPACE__' => 'Auth\Controller',
+//                        'controller' => 'Success',
+//                        'action' => 'index',
+//                    ),
+//                ),
+//                'may_terminate' => true,
+//                'child_routes' => array(
+//                    'default' => array(
+//                        'type' => 'Segment',
+//                        'options' => array(
+//                            'route' => '/[:action]',
+//                            'constraints' => array(
+//                                'controller' => '[a-zA-Z0-9]*',
+//                                'action' => '[a-zA-Z0-9]*',
+//                            ),
+//                            'defaults' => array(
+//                            ),
+//                        ),
+//                    ),
+//                ),
+//            ),
             
             
         ),
@@ -64,6 +64,15 @@ return array(
     'view_manager' => array(
         'template_path_stack' => array(
             'Auth' => __DIR__ . '/../view',
+        ),
+    ),
+    
+    'service_manager' => array(
+        'invokables' => array(
+            'Auth\Model\MyAuthStorage' => 'Auth\Model\MyAuthStorage',
+        ),
+        'factories' => array(
+            'Zend\Authentication\AuthenticationService' => 'Auth\Factory\AuthenticationServiceFactory',
         ),
     ),
     

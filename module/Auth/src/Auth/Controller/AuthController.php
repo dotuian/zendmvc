@@ -14,13 +14,11 @@ class AuthController extends AbstractActionController {
     protected $authservice;
 
     public function __construct() {
-        
-
     }
 
     public function getAuthService() {
         if (!$this->authservice) {
-            $this->authservice = $this->getServiceLocator()->get('AuthService');
+            $this->authservice = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         }
 
         return $this->authservice;
@@ -35,13 +33,15 @@ class AuthController extends AbstractActionController {
     }
 
     public function getForm() {
-        if (!$this->form) {
-            $user = new User();
-            $builder = new AnnotationBuilder();
-            $this->form = $builder->createForm($user);
-        }
-
-        return $this->form;
+//        if (!$this->form) {
+//            $user = new User();
+//            $builder = new AnnotationBuilder();
+//            $this->form = $builder->createForm($user);
+//        }
+//
+//        return $this->form;
+        
+        return new \Auth\Form\UserForm();
     }
 
     public function loginAction() {
@@ -49,7 +49,7 @@ class AuthController extends AbstractActionController {
         if ($this->getAuthService()->hasIdentity()) {
             return $this->redirect()->toRoute('success');
         }
-
+        
         $form = $this->getForm();
 
         return array(
@@ -90,15 +90,24 @@ class AuthController extends AbstractActionController {
             }
         }
 
-        return $this->redirect()->toRoute($redirect);
+        return $this->redirect()->toRoute('auth', array('action' => $redirect));
     }
 
+    public function successAction() {
+        if (!$this->getServiceLocator()->get('Zend\Authentication\AuthenticationService')->hasIdentity()) {
+            return $this->redirect()->toRoute('auth');
+        }
+
+        return new ViewModel();
+    }
+    
     public function logoutAction() {
         $this->getSessionStorage()->forgetMe();
         $this->getAuthService()->clearIdentity();
 
         $this->flashmessenger()->addMessage("You've been logged out");
-        return $this->redirect()->toRoute('auth');
+//        return $this->redirect()->toRoute('auth');
+        return $this->redirect()->toRoute('auth', array('action' => 'login'));
     }
     
 }

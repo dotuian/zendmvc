@@ -41,28 +41,28 @@ class Module implements AutoloaderProviderInterface {
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getServiceConfig() {
-        return array(
-            'factories' => array(
-                'Auth\Model\MyAuthStorage' => function($sm) {
-                    return new \Auth\Model\MyAuthStorage('zf_tutorial');
-                },
-
-                'AuthService' => function($sm) {
-                    //My assumption, you've alredy set dbAdapter
-                    //and has users table with columns : user_name and pass_word
-                    //that password hashed with md5
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $dbTableAuthAdapter = new DbTableAuthAdapter($dbAdapter, 'user', 'username', 'password');
-
-                    $authService = new AuthenticationService();
-                    $authService->setAdapter($dbTableAuthAdapter);
-                    $authService->setStorage($sm->get('Auth\Model\MyAuthStorage'));
-
-                    return $authService;
-                },
-            ),
-        );
-    }
+//    public function getServiceConfig() {
+//        return array(
+//            'factories' => array(
+//                'Auth\Model\MyAuthStorage' => function($sm) {
+//                    return new \Auth\Model\MyAuthStorage('zf_tutorial');
+//                },
+//
+//                'AuthService' => function($sm) {
+//                    //My assumption, you've alredy set dbAdapter
+//                    //and has users table with columns : user_name and pass_word
+//                    //that password hashed with md5
+//                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+//                    $dbTableAuthAdapter = new DbTableAuthAdapter($dbAdapter, 'user', 'username', 'password');
+//
+//                    $authService = new AuthenticationService();
+//                    $authService->setAdapter($dbTableAuthAdapter);
+//                    $authService->setStorage($sm->get('Auth\Model\MyAuthStorage'));
+//
+//                    return $authService;
+//                },
+//            ),
+//        );
+//    }
 
 }

@@ -14,6 +14,7 @@
         <td><?= $post->getTitle() ?></td>
         <td><?= $post->getText() ?></td>
         <td>
+            <a href="<?php echo $this->url('blog', array('action' => 'detail', 'id' => $post->getId())) ?>">Detail</a>
             <a href="<?php echo $this->url('blog', array('action' => 'edit', 'id' => $post->getId())) ?>">Edit</a>
             <a href="<?php echo $this->url('blog', array('action' => 'delete', 'id' => $post->getId())) ?>">Delete</a>
         </td>

@@ -92,20 +92,24 @@
                             </ul>
                         </li>
                         
-                        <li>
-                            <?php if(!$this->zfcUserIdentity()): ?>
-                            <a href="<?php echo $this->url('zfcuser',array('action'=>'login'))?>"><i class="fa fa-fw fa-paint-brush"></i> <?php echo $this->translate('Login') ?></a>
-                            <?php else: ?>
-                            <a href="<?php echo $this->url('zfcuser/logout') ?>">
-                                <i class="fa fa-fw fa-paint-brush"></i> 
-                                    <?php echo $this->translate('Logout') ?>
-                                    (<?php echo $this->zfcUserIdentity()->getUsername() ?>)
-                            </a>
-                            <?php endif?>
-                        </li>
                     </ul>
                     -->
                     <!-- https://github.com/ZF-Commons/ZfcUser/wiki/How-to-check-if-the-user-is-logged-in -->
+                    <!--
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <?php // if(!$this->zfcUserIdentity()): ?>
+                            <a href="<?php // echo $this->url('zfcuser/login')?>"><i class="fa fa-fw fa-paint-brush"></i> <?php echo $this->translate('Login') ?></a>
+                            <?php // else: ?>
+                            <a href="<?php // echo $this->url('zfcuser/logout') ?>">
+                                <i class="fa fa-fw fa-paint-brush"></i> 
+                                    <?php echo $this->translate('Logout') ?>
+                                    (<?php // echo $this->zfcUserIdentity()->getUsername() ?>)
+                            </a>
+                            <?php // endif?>
+                        </li>
+                    </ul>
+                    -->
                     
                 </div><!--/.nav-collapse -->
                 

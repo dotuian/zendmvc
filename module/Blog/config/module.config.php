@@ -6,38 +6,6 @@
  * and open the template in the editor.
  */
 return array(
-//    'router' => array(
-//        'routes' => array(
-//            'blog' => array(
-//                'type'    => 'Literal',
-//                'options' => array(
-//                    'route'    => '/blog',
-//                    'defaults' => array(
-//                        '__NAMESPACE__' => 'Blog\Controller',
-//                        'controller'    => 'Blog',
-//                        'action'        => 'index',
-//                    ),
-//                ),
-//                'may_terminate' => true,
-//                'child_routes' => array(
-//                    'default' => array(
-//                        'type'    => 'Segment',
-//                        'options' => array(
-//                            'route'    => '/[:controller[/:action]]',
-//                            'constraints' => array(
-//                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-//                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-//                            ),
-//                            'defaults' => array(
-//                            ),
-//                        ),
-//                    ),
-//                ),
-//            ),
-//
-//        ),
-//    ),
-    
     
     'router' => [
         'routes' => [
@@ -139,7 +107,5 @@ return array(
             ),
         ),
     ),
-    
-    
     
 );

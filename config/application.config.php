@@ -5,15 +5,15 @@ $env = getenv('APP_ENV') ? getenv('APP_ENV') : 'production';
 $modules = array(
     'Application',
     'Album',
-    //'Auth',
-    'ZfcUser',
-    //'ZfcRbac',
+    'Auth',
+//    'ZfcUser',
+//    'ZfcRbac',
     'Blog',
     'Tutorial',
 );
 
 if ($env == 'development') {
-    $modules[] = 'ZendDeveloperTools';
+//    $modules[] = 'ZendDeveloperTools';
 }
 
 return array(

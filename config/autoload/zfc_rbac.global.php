@@ -49,23 +49,20 @@ return [
          *      ]
          */
         // 'guards' => [],
-        'guards' => [
+//        'guards' => [
 //            'ZfcRbac\Guard\RouteGuard' => [
-//                'admin*' => ['admin'],
-//                'login'   => ['guest'],
-//                'home' => ['*']
-//            ],
-            
-//            'ZfcRbac\Guard\ControllerGuard' => [
-//                [
-//                    'controller' => 'MyController',
-//                    'actions'    => ['read', 'edit'],
-//                    'roles'      => ['guest', 'member']
-//                ]
+//                'admin*' => ['admin']
 //            ]
+//        ],
+        
+//        'guards' => [
+//            'ZfcRbac\Guard\RouteGuard' => [
+//                'zfcuser/login'    => ['guest'],
+//                'zfcuser/register' => ['guest'], // required if registration is enabled
+//                'zfcuser*'         => ['user'] // includes logout, changepassword and changeemail
+//            ]
+//        ],
 
-            
-        ],
         
 /**
          * As soon as one rule for either route or controller is specified, a guard will be automatically
@@ -77,7 +74,8 @@ return [
          *
          * DENY is the most secure way, but it is more work for the developer
          */
-        // 'protection_policy' => \ZfcRbac\Guard\GuardInterface::POLICY_ALLOW,
+         //'protection_policy' => \ZfcRbac\Guard\GuardInterface::POLICY_ALLOW,
+//         'protection_policy' => \ZfcRbac\Guard\GuardInterface::POLICY_DENY,
 
         /**
          * Configuration for role provider
@@ -94,7 +92,7 @@ return [
          *
          * Supported options depend of the role provider, so please refer to the official documentation
          */
-        'role_provider' => [
+//        'role_provider' => [
 //            'ZfcRbac\Role\InMemoryRoleProvider' => [
 //                'admin' => [
 //                    'children'    => ['member'],
@@ -102,12 +100,10 @@ return [
 //                ],
 //                'member' => [
 //                    'permissions' => ['edit']
-//                ],
-//                'guest' => [
-//                    'permissions' => ['article.read']
-//                ],
+//                ]
 //            ]
-        ],
+//        ],
+
 
         /**
          * Configure the unauthorized strategy. It is used to render a template whenever a user is unauthorized

@@ -7,6 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
+
 return array(
     
     // router 此数组块为路由配置信息段
@@ -131,9 +132,29 @@ return array(
             // 所以语言包可以根据项目的实现需求来进行订制，如果实际的项目开发中并不使用到国际化的功能时，
             // 可以将多国语言国际功能删除。
             'translator' => 'MvcTranslator',
+            
+            // Using ZfcRbac and ZfcUser
+//            'Zend\Authentication\AuthenticationService' => 'zfcuser_auth_service'
         ),
         'factories' => array(
             'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory', // 导航管理器
+            
+//            'Auth\Model\MyAuthStorage' => function($sm) {
+//                return new \Auth\Model\MyAuthStorage('zf_tutorial');
+//            },
+//            'Zend\Authentication\AuthenticationService' => function($sm) {
+//                // Create your authentication service!
+//    
+//                $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+//                $dbTableAuthAdapter = new DbTableAuthAdapter($dbAdapter, 'user', 'username', 'password');
+//
+//                $authService = new AuthenticationService();
+//                $authService->setAdapter($dbTableAuthAdapter);
+//                $authService->setStorage($sm->get('Auth\Model\MyAuthStorage'));
+//
+//                return $authService;
+//            }
+            
         ),
         
     ),
