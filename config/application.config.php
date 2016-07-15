@@ -1,17 +1,26 @@
 <?php
+
+$env = getenv('APP_ENV') ? getenv('APP_ENV') : 'production';
+
+$modules = array(
+    'Application',
+    'Album',
+    //'Auth',
+    'ZfcUser',
+    //'ZfcRbac',
+    'Blog',
+    'Tutorial',
+);
+
+if ($env == 'development') {
+    $modules[] = 'ZendDeveloperTools';
+}
+
 return array(
 
     // 模块配置，网站系统的每一个模块都要添加到此，以便ZF2框架能够正确的找到模块
     // This should be an array of module namespaces used in the application.
-    'modules' => array(
-        'Application',
-        'Album',
-        //'Auth',
-        'ZendDeveloperTools',
-        'ZfcUser',
-        //'ZfcRbac',
-        'Blog',
-    ),
+    'modules' => $modules,
 
     // 设置模块的事件侦听
     // These are various options for the listeners attached to the ModuleManager

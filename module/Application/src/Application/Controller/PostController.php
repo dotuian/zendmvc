@@ -10,17 +10,17 @@ class PostController extends AbstractActionController {
 
     protected $postService;
     
-    protected $autorizationService;
-
-    public function __construct(AuthorizationService $autorizationService) {
-        $this->autorizationService = $autorizationService;
-    }
+//    protected $autorizationService;
+//
+//    public function __construct(AuthorizationService $autorizationService) {
+//        $this->autorizationService = $autorizationService;
+//    }
     
     public function indexAction(){
         
-        if (!$this->isGranted('deletePost')) {
-            throw new UnauthorizedException('You are not allowed !');
-        }
+//        if (!$this->isGranted('deletePost')) {
+//            throw new UnauthorizedException('You are not allowed !');
+//        }
         
         echo date('Y-m-d');
     }

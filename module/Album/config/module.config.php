@@ -39,4 +39,58 @@ return [
         ],
     ],
     
+    // 服务管理器
+    'service_manager' => array(
+        'invokables' => array(
+            // 定义事件监听器
+            'AlbumListener' => 'Album\Listener\AlbumListener',
+        ),
+        
+        'factories' => array(
+            'LogListener' => function($sm){
+                $logger = $sm->get('Zend\Log\Logger');
+                return new Listener\LogListener($logger);
+            },
+        ),
+    ),
+
+    // 事件监听器
+    'listeners' => array(
+        'LogListener',
+    ),
+    
+    // 
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Album',
+                'route' => 'album',
+                'pages' => array(
+                    array(
+                        'label' => 'Add',
+                        'route' => 'album',
+                        'action' => 'add',
+                    ),
+                    array(
+                        'label' => 'List',
+                        'route' => 'album',
+                        'action' => 'list',
+                        'pages' => array(
+                            array(
+                                'label' => 'Edit',
+                                'route' => 'album',
+                                'action' => 'edit',
+                            ),
+                            array(
+                                'label' => 'Delete',
+                                'route' => 'album',
+                                'action' => 'delete',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+
 ];

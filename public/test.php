@@ -1,10 +1,5 @@
 <?php
 
-echo __DIR__ . PHP_EOL;
-
-echo dirname(__DIR__) . PHP_EOL;
-
-
-
-
+// Composer autoloading
+include __DIR__ . '/../vendor/autoload.php';
 

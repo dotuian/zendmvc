@@ -132,9 +132,12 @@ return array(
             // 可以将多国语言国际功能删除。
             'translator' => 'MvcTranslator',
         ),
+        'factories' => array(
+            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory', // 导航管理器
+        ),
         
     ),
-    
+
     // translator 翻译器
     // 翻译器的主要工作是负责对各种支持语言的转换以此为目的，从而实现网站应用程序的多国化甚至全球化。
     // mo文件可以通过 poedit 软件来生成，也可能过poedit 来修改po文件
@@ -223,8 +226,15 @@ return array(
             ),
         ),
     ),
+    
     // 页面导航
     'navigation' => array(
-        
+        'default' => array(
+            array(
+                'label' => 'Home',
+                'route' => 'home',
+            ),
+        ),
     ),
+    
 );

@@ -38,7 +38,9 @@ class ZendDbSqlMapper implements PostMapperInterface {
      * @param AdapterInterface  $dbAdapter
      */
     public function __construct(
-    AdapterInterface $dbAdapter, HydratorInterface $hydrator, PostInterface $postPrototype
+            AdapterInterface $dbAdapter, 
+            HydratorInterface $hydrator, 
+            PostInterface $postPrototype
     ) {
         $this->dbAdapter = $dbAdapter;
         $this->hydrator = $hydrator;

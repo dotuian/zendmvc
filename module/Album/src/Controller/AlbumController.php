@@ -46,9 +46,10 @@ class AlbumController extends AbstractActionController
     public function addAction()
     {
         $form = new AlbumForm();
-        $form->get('submit')->setValue('Add');
+        $form->get('submit')->setValue('Create');
 
         $request = $this->getRequest();
+//        \Zend\Debug\Debug::dump($request);
 
         if (! $request->isPost()) {
             return ['form' => $form];
@@ -57,6 +58,8 @@ class AlbumController extends AbstractActionController
         $album = new Album();
         $form->setInputFilter($album->getInputFilter());
         $form->setData($request->getPost());
+        
+        \Zend\Debug\Debug::dump($request->getPost());
 
         if (!$form->isValid()) {
             return ['form' => $form];

@@ -37,6 +37,15 @@
                     <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Zend Framework Application') ?></a>
                 </div>
                 <div class="collapse navbar-collapse">
+                    
+                    <?php echo $this->
+                        navigation('navigation')
+                        ->menu()
+                        ->setUlClass('nav navbar-nav')
+                        ->setPartial('partial/navigation.phtml'); 
+                    ?>
+                    
+                <!--
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
                         
@@ -84,7 +93,6 @@
                         </li>
                         
                         <li>
-                            <!-- https://github.com/ZF-Commons/ZfcUser/wiki/How-to-check-if-the-user-is-logged-in -->
                             <?php if(!$this->zfcUserIdentity()): ?>
                             <a href="<?php echo $this->url('zfcuser',array('action'=>'login'))?>"><i class="fa fa-fw fa-paint-brush"></i> <?php echo $this->translate('Login') ?></a>
                             <?php else: ?>
@@ -95,15 +103,22 @@
                             </a>
                             <?php endif?>
                         </li>
-
                     </ul>
-                    
+                    -->
+                    <!-- https://github.com/ZF-Commons/ZfcUser/wiki/How-to-check-if-the-user-is-logged-in -->
                     
                 </div><!--/.nav-collapse -->
                 
             </div>
         </nav>
         <div class="container">
+            <?php
+            echo $this->navigation('navigation')
+                    ->breadcrumbs()
+                    ->setMinDepth(0)
+                    ->setPartial('partial/breadcrumb.phtml');
+            ?>
+
             <?php echo $this->content; ?>
             <hr>
             <footer>

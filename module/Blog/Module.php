@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ttp://wiki.jikexueyuan.com/project/zend-indepth-tutorial/first-blog-module.html
+ * http://wiki.jikexueyuan.com/project/zend-indepth-tutorial/first-blog-module.html
  */
 
 namespace Blog;

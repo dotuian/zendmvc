@@ -6,80 +6,62 @@
  * and open the template in the editor.
  */
 return array(
-    // 该行为 RouteManager 打开配置
-    'router' => array(
-        // 打开所有可能路径的配置O
-        'routes' => array(
-            
-            'blog' => array(
-                // Zend\Mvc\Router\Http\Literal 文字路径
-                // 文字路径是一种匹配某个特定字符串的路径。
-                
-                // Zend\Mvc\Router\Http\Segment 段路径
-                // 当你的 url 包含变量参数时就适用段路径。
-                
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/blog',
-                    'defaults' => array(
-                        'controller' => 'Blog\Controller\List',
-                        'action' => 'list',
-                    ),
-                ),
+//    'router' => array(
+//        'routes' => array(
+//            'blog' => array(
+//                'type'    => 'Literal',
+//                'options' => array(
+//                    'route'    => '/blog',
+//                    'defaults' => array(
+//                        '__NAMESPACE__' => 'Blog\Controller',
+//                        'controller'    => 'Blog',
+//                        'action'        => 'index',
+//                    ),
+//                ),
+//                'may_terminate' => true,
+//                'child_routes' => array(
+//                    'default' => array(
+//                        'type'    => 'Segment',
+//                        'options' => array(
+//                            'route'    => '/[:controller[/:action]]',
+//                            'constraints' => array(
+//                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+//                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+//                            ),
+//                            'defaults' => array(
+//                            ),
+//                        ),
+//                    ),
+//                ),
+//            ),
+//
+//        ),
+//    ),
+    
+    
+    'router' => [
+        'routes' => [
+            'blog' => [
+                'type'    => 'segment', #Literal
+                'options' => [
+                    'route'    => '/blog[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ],
+                    'defaults' => [
+                        'controller' => 'Blog\Controller\Blog',
+                        'action'     => 'index',
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'detail' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/:id',
-                            'defaults' => array(
-                                'action' => 'detail'
-                            ),
-                            'constraints' => array(
-                                'id' => '[1-9]\d*'
-                            )
-                        )
-                    ),
-                    'add' => array(
-                        'type' => 'literal',
-                        'options' => array(
-                            'route' => '/add',
-                            'defaults' => array(
-                                'controller' => 'Blog\Controller\Write',
-                                'action' => 'add'
-                            )
-                        )
-                    ),
-                    'edit' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/edit/:id',
-                            'defaults' => array(
-                                'controller' => 'Blog\Controller\Write',
-                                'action' => 'edit'
-                            ),
-                            'constraints' => array(
-                                'id' => '\d+'
-                            )
-                        )
-                    ),
-                    'delete' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/delete/:id',
-                            'defaults' => array(
-                                'controller' => 'Blog\Controller\Delete',
-                                'action' => 'delete'
-                            ),
-                            'constraints' => array(
-                                'id' => '\d+'
-                            )
-                        )
-                    ),
-                ),
-            )
-        )
-    ),
+                'child_routes' => [
+                    
+                ],
+            ],
+        ],
+    ],
+    
     'controllers' => array(
 //         'invokables' => array(
 //             'Blog\Controller\List' => 'Blog\Controller\ListController'
@@ -87,6 +69,16 @@ return array(
         'factories' => array(
             'Blog\Controller\List' => 'Blog\Factory\ListControllerFactory',
             'Blog\Controller\Write' => 'Blog\Factory\WriteControllerFactory',
+            'Blog\Controller\Blog' => function($sm) {
+    
+                $realServiceLocator = $sm->getServiceLocator();
+                $postService = $realServiceLocator->get('Blog\Service\PostServiceInterface');
+                $postInsertForm = $realServiceLocator->get('FormElementManager')->get('Blog\Form\PostForm');
+
+                return new \Blog\Controller\BlogController(
+                        $postService, $postInsertForm
+                );
+            }
         )
     ),
     'view_manager' => array(
@@ -113,4 +105,41 @@ return array(
             \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         )
     ),
+    
+    
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Blog',
+                'route' => 'blog',
+                'pages' => array(
+                    array(
+                        'label' => 'Add',
+                        'route' => 'blog',
+                        'action' => 'add',
+                    ),
+                    array(
+                        'label' => 'List',
+                        'route' => 'blog',
+                        'action' => 'list',
+                        'pages' => array(
+                            array(
+                                'label' => 'Edit',
+                                'route' => 'blog',
+                                'action' => 'edit',
+                            ),
+                            array(
+                                'label' => 'Delete',
+                                'route' => 'blog',
+                                'action' => 'delete',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    
+    
+    
 );

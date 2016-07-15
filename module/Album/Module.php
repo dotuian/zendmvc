@@ -27,7 +27,10 @@ class Module
         
         // 附加事件管理器
         $moduleRouteListener->attach($eventManager);
+        
     }
+    
+    
 
     // 获取此模块中的配置信息，返回一个符合ZF2自动加载工厂规则的数组
     public function getConfig()
